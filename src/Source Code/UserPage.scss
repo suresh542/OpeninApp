@@ -47,8 +47,14 @@
             list-style: none;
             padding: 0;
 
+            #Active a {
+                color: #605BFF;
+            }
+
+
             li {
                 margin: 30px 0 0 0;
+
 
                 a {
                     font-family: 'Nunito', sans-serif;
@@ -70,12 +76,17 @@
                         align-items: center;
                     }
 
+
                     img,
                     i {
                         width: 30px;
                         height: 30px;
                         margin-right: 30px;
                         font-size: 30px;
+
+                        &:active {
+                            color: #605BFF;
+                        }
 
                         &:focus {
 
@@ -146,10 +157,12 @@
                 border-radius: 10px;
                 display: flex;
                 justify-content: center;
+
                 div {
                     display: flex;
                     justify-content: center;
                     align-items: center;
+
                     img {
 
                         width: 40px;
@@ -162,11 +175,13 @@
                     font-family: 'Figtree', sans-serif;
                     font-weight: 600;
                     font-size: 16px;
-                    span{
+
+                    span {
                         color: #605BFF;
                     }
                 }
-                input{
+
+                input {
                     display: none;
                 }
             }
@@ -197,4 +212,256 @@
             }
         }
     }
+}
+
+.MenuListBtn {
+    display: none;
+}
+
+@media screen and (max-width: 992px) {
+    .leftSideMenu {
+        display: none;
+    }
+
+    .menulistMobile {
+        width: 100%;
+        padding: 10px;
+
+        .leftSideMenuLogo {
+            display: flex;
+            align-items: center;
+
+            // padding: 10px;
+            .menuHead {
+                width: 80%;
+                display: flex;
+                justify-content: space-between;
+
+                .closeBtn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+
+        }
+
+        .BaseText {
+            text-transform: capitalize;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            font-size: 30px;
+            color: #030229;
+            left: 15px;
+            display: flex;
+            margin-top: 0px;
+            position: relative;
+            justify-content: center;
+            text-align: center;
+            vertical-align: middle;
+            align-items: center;
+        }
+
+        .menuItems {
+            margin-top: 50px;
+
+            ul {
+                list-style: none;
+                padding: 0;
+
+                #Active a {
+                    color: #605BFF;
+                }
+
+
+                li {
+                    margin: 30px 0 0 0;
+
+
+                    a {
+                        font-family: 'Nunito', sans-serif;
+                        font-weight: 600;
+                        text-decoration: none;
+                        font-size: 20px;
+                        color: #9A9AA9;
+
+                        &:active {
+                            color: #605BFF;
+                        }
+
+                        &:focus {
+                            color: #605BFF;
+
+                        }
+
+                        i {
+                            align-items: center;
+                        }
+
+
+                        img,
+                        i {
+                            width: 30px;
+                            height: 30px;
+                            margin-right: 30px;
+                            font-size: 30px;
+
+                            &:active {
+                                color: #605BFF;
+                            }
+
+                            &:focus {
+
+                                color: #605BFF;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .UserPageMain {
+        padding: 0px;
+
+        .MenuListBtn {
+            padding: 30px 10px 10px 10px;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+
+            .leftSideHeadMobile {
+                display: flex;
+
+                button {
+                    padding: 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+
+                    div {
+                        i {
+                            font-size: 25px;
+                            display: flex;
+                            align-items: center;
+                            padding-right: 0px;
+                        }
+                    }
+                }
+            }
+            .RightSideHead {
+                display: flex;
+                align-items: center;
+
+                div {
+                    margin-left: 20px;
+
+                    i {
+                        font-size: 20px;
+                        margin-right: 20px;
+                        color: #030229;
+
+                        &:active {
+                            color: #605BFF;
+                        }
+                    }
+
+                    img {
+                        width: 30px;
+                        height: 100%;
+                    }
+                }
+            }
+
+            .userPageHeadMobile {
+                .leftSideMenuLogo {
+                    display: flex;
+
+                    .MainLogoUserPage {
+                        img {
+                            width: 30px;
+                            margin: 5px;
+                            height: 30px;
+                        }
+                    }
+
+                    .BaseText {
+                        text-transform: capitalize;
+                        font-family: 'Nunito', sans-serif;
+                        font-weight: 600;
+                        font-size: 25px;
+                        color: #030229;
+                        display: flex;
+                        margin-top: 0px;
+                        position: relative;
+                        justify-content: center;
+                        text-align: center;
+                        vertical-align: middle;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+        .userPageHead {
+            margin-top: 20px;
+            padding: 20px;
+            .RightSideHead {
+                display: none;
+
+            }
+        }
+
+        .userPageBody {
+
+            margin-top: 10px;
+            margin-left: 20px;
+            margin-right:20px;
+            padding: 10px;
+            // background-color: #ffffff;
+
+            .uploadFileHere {
+                .excelSheetHere {
+                    padding: 40px;
+                    border: 2px solid #EBEBEB;
+                    border-style: dashed;
+                    border-radius: 10px;
+                    display: flex;
+                    justify-content: center;
+
+                    div {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        img {
+
+                            width: 40px;
+                            height: auto;
+                        }
+                    }
+
+                    .browserHere {
+                        padding: 10px;
+                        font-family: 'Figtree', sans-serif;
+                        font-weight: 400;
+                        font-size: 14px;
+
+                        span {
+                            color: #605BFF;
+                        }
+                    }
+
+                    input {
+                        display: none;
+                    }
+                }
+            }
+
+        }
+    }
+
 }

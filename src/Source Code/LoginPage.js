@@ -9,30 +9,33 @@ export default function LoginPage() {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [isLoggedIn, setLoggedIn] = useState(false);
+    const [Nav, setNav] = useState("")
     const [invalidMsg, setInvalidMsg] = useState("")
     const [errorMassage, setErrorMassage] = useState();
 
     const HandelLogin = (e) => {
         e.preventDefault();
-        if (userName.trim() === "suresh@gmail.com" && password.trim() === "suresh") {
+        if (userName.toLowerCase() === "suresh@gmail.com" && password === "suresh") {
             e.preventDefault();
             setLoggedIn(true);
             setInvalidMsg("")
             setErrorMassage(errorMassage)
-
+            setNav("/UserPage")
         }
         else if (userName === "" && password === "") {
             setInvalidMsg("Enter the Username & Password")
+
         }
         else {
             setInvalidMsg("Invalid Username & Password")
             setErrorMassage('');
+            setNav("")
         }
     };
 
     return (
         <div>
-            {isLoggedIn ? (<Navigate to="/UserPage" />) :
+            {isLoggedIn ? (<Navigate to={Nav}/>) :
                 (
                     <div className='MainLoginPage'>
                         <div className='loginPageBgImage'>
@@ -110,7 +113,7 @@ export default function LoginPage() {
                                                                 type="password"
                                                                 name=""
                                                                 id="username"
-                                                                value={password}
+                                                                value={password.toLowerCase()}
                                                                 onChange={(e) => setPassword(e.target.value)} />
 
                                                         </div>
