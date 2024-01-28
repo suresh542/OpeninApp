@@ -15,7 +15,7 @@
     content: "";
     display: block;
     position: absolute;
-    border-top:100vh solid #605BFF;
+    border-top: 100vh solid #605BFF;
     border-right: 100px solid transparent;
     width: 50%;
     color: #605BFF;
@@ -30,6 +30,11 @@
 
     #leftSideOfLoginPage {
         padding: 50px 40px 50px 40px;
+        position: relative;
+        // display: flex;
+        // flex-direction: column;
+        // align-content: space-between;
+        height: 100vh;
     }
 
     .BaseText {
@@ -39,7 +44,8 @@
         font-size: 72px;
         color: #ffffff;
         display: flex;
-        margin-top: 200px;
+        // top: 200px;
+        top: 25%;
         position: relative;
         justify-content: center;
         text-align: center;
@@ -49,12 +55,11 @@
 
     .socialMediaLinksIcons {
         position: relative;
-        top: 350px;
-        // left: 250px;
         display: flex;
         justify-content: center;
         text-align: center;
         align-items: center;
+        top: 75%;
 
         ul {
             display: flex;
@@ -63,10 +68,11 @@
             align-items: center;
 
             li {
-                padding: 20px;
+                padding: 0 20px 0 20px;
+
                 i {
                     font-size: 40px;
-                color: #ffffff;
+                    color: #ffffff;
 
                 }
             }
@@ -75,10 +81,12 @@
 }
 
 .rightSideLoginPage {
-    // display: flex;
-    margin: 200px 0 0px 0;
-    padding-left: 200px;
-    padding-right: 200px;
+    // padding-left: 200px;
+    // padding-right: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 
     div {
         .InvalidError {
@@ -86,6 +94,10 @@
             margin-top: 20px;
             text-align: center;
         }
+    }
+
+    .socialMediaLinksIconsMoblie {
+        display: none;
     }
 
     .SignIn {
@@ -114,15 +126,22 @@
 
     #signInGoogleAndApple {
         display: flex;
-        justify-content: space-between;
 
-        div {
+        justify-content: space-between;
+        #signInGoogle{
+            margin-right: 30px ;
+        }
+        #signInApple{
+            margin-left: 10px;
+        }
+        #signInGoogle,
+        #signInApple {
             a {
                 text-decoration: none;
             }
 
             background-color: #F8FAFF;
-            padding: 10px 20px 10px 20px;
+            padding: 10px;
             border-radius: 10px;
             margin-top: 30px;
 
@@ -145,7 +164,7 @@
 
     #LoginFrom {
         margin-top: 30px;
-        padding: 30px;
+        padding: 20px;
         background-color: #F8FAFF;
         border-radius: 10px;
 
@@ -160,7 +179,7 @@
                 font-size: 16px;
 
                 div {
-                    width: 100;
+                    width: 100%;
 
                     input[type=text] {
                         margin: 20px 0 20px 0;
@@ -220,30 +239,31 @@
 
 @media screen and (max-width:992px) {
     .loginPageBgImage {
-            content: "";
-         
-            position: absolute;
-            border-top: 100px solid #605BFF;
-            border-right: none;
-            width: 100%;
-            color: #605BFF;
-            height: 100%;
-            z-index: -1;
+        content: "";
+        position: absolute;
+        border-top: 100px solid #605BFF;
+        border-right: none;
+        width: 100%;
+        color: #605BFF;
+        height: 100%;
+        z-index: -1;
     }
+
     #loginPageRow {
-        #MainLogo {
-            position: relative;
-            display: flex;
-            text-align: center;
-        }
-    
+        // #MainLogo {
+        //     position: relative;
+        //     display: flex;
+        //     text-align: center;
+        // }
+
         #leftSideOfLoginPage {
-            padding: 30px;
+            padding: 50px 0px 50px 20px;
             display: flex;
             text-align: center;
             align-items: center;
+            height: 0;
         }
-    
+
         .BaseText {
             text-transform: capitalize;
             font-family: 'Nunito', sans-serif;
@@ -254,33 +274,30 @@
             display: flex;
             margin-top: 0px;
             position: relative;
-            justify-content: center;
-            text-align: center;
+            justify-content: start;
+            text-align: start;
             vertical-align: middle;
-            align-items: center;
+            align-items: start;
         }
-        .socialMediaLinksIcons{
+
+        .socialMediaLinksIcons {
             display: none;
         }
-    
+
         .socialMediaLinksIconsMoblie {
             position: relative;
-            // left: 250px;
-            display: flex;
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-    
+            display: block;
+
             ul {
                 display: flex;
                 justify-content: center;
                 text-align: center;
                 align-items: center;
-    
+
                 li {
                     padding: 20px;
-                    background-color:#ffffff;
-    
+                    background-color: #ffffff;
+
                     i {
                         font-size: 30px;
                         color: #858585;
@@ -292,16 +309,20 @@
             }
         }
     }
+
     #MainLogo {
         width: 30px;
         height: 30px;
     }
 
     .rightSideLoginPage {
-        margin-top: 100px;
+        // margin-top: 100px;
         padding: 10px;
         padding-right: 0px;
-    
+        display: block;
+        justify-content: center;
+        align-items: center;
+
         div {
             .InvalidError {
                 color: red;
@@ -309,40 +330,48 @@
                 text-align: center;
             }
         }
-    
+
         .SignIn {
             a {
                 text-decoration: none;
             }
-    
+
             text-transform: capitalize;
-            font-family: 'Montserrat',sans-serif;
+            font-family: 'Montserrat',
+            sans-serif;
             font-weight: 700;
             font-size: 30px;
             line-height: 43px;
         }
-    
+
         #signInGoogleAndApple {
             display: flex;
             justify-content: space-between;
-            div {
-                span {
-                    font-size: 10px;
-                    font-family: 'Montserrat', sans-serif;
-                    font-weight: 400;
-                    color: #858585;
-                    letter-spacing: 0.5px;
-                    margin-left: 15px;
+
+            #signInGoogle {
+                a {
+                    span {
+                        font-size: 10px;
+                        font-family: 'Montserrat', sans-serif;
+                        font-weight: 400;
+                        color: #858585;
+                        letter-spacing: 0.5px;
+                        margin-left: 15px;
+                    }
                 }
             }
         }
-        .loginContent{
-            #LoginFrom{
+
+        .loginContent {
+            #LoginFrom {
                 padding: 10px;
-                form{
-                    div{
-                        div{
-                            input[type=text],[type=password]{
+
+                form {
+                    div {
+                        div {
+
+                            input[type=text],
+                            [type=password] {
                                 padding: 10px;
                             }
                         }
@@ -350,19 +379,15 @@
                 }
             }
         }
-        
-    
-    }
-    
-
-
-}
-
-@media screen and (max-width : 767px) {
-    .rightSideLoginPage {
-        // display: flex;
-        margin-top: 10px;
-        padding: 10px;
-        padding-right: 0px;
     }
 }
+
+// @media screen and (max-width : 767px) {
+//     .rightSideLoginPage {
+//         display: block;
+//         position: relative;
+//         margin-top: 10px;
+//         padding: 10px;
+//         padding-right: 0px;
+//     }
+// }

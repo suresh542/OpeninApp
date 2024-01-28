@@ -130,7 +130,7 @@ export default function LoginPage() {
                                                 <p>Don’t have an account? <span><a href="RegisterHere">Register here</a></span></p>
                                             </div>
                                         </div>
-                                        <div className='socialMediaLinksIconsMoblie d-md-none d-sm-flex'>
+                                        <div className='socialMediaLinksIconsMoblie'>
                                             <ul className='list-unstyled'>
                                                 <li><a href="#gitHub"><i class="fa-brands fa-github"></i></a></li>
                                                 <li><a href="#twitter"><i class="fa-brands fa-twitter"></i></a></li>
