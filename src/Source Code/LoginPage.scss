@@ -81,8 +81,6 @@
 }
 
 .rightSideLoginPage {
-    // padding-left: 200px;
-    // padding-right: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,7 +216,6 @@
                     font-family: 'Montserrat', sans-serif;
                     font-weight: 700;
                 }
-
                 a {
                     text-decoration: none;
                 }
@@ -250,11 +247,6 @@
     }
 
     #loginPageRow {
-        // #MainLogo {
-        //     position: relative;
-        //     display: flex;
-        //     text-align: center;
-        // }
 
         #leftSideOfLoginPage {
             padding: 50px 0px 50px 20px;
@@ -348,7 +340,9 @@
             display: flex;
             justify-content: space-between;
 
-            #signInGoogle {
+            #signInGoogle,#signInApple {
+                padding: 5px;
+
                 a {
                     span {
                         font-size: 10px;
@@ -356,7 +350,7 @@
                         font-weight: 400;
                         color: #858585;
                         letter-spacing: 0.5px;
-                        margin-left: 15px;
+                        // margin-left: 1px;
                     }
                 }
             }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import "./UserPage.scss"
 import LeftSideLogo from "./image/userPageLogo.png"
 import DashboardIcons from "./image/Menu icons/DashBoard.png"
@@ -9,39 +9,101 @@ import NotificationIcons from "./image/Menu icons/Notification.png"
 import SettingIcons from "./image/Menu icons/Setting.png"
 import imageHere from "./image/userImage.png"
 import excelIcons from "./image/microsoft-excel-icon.png"
+import * as XLSX from 'xlsx';
+
 
 export default function UserPage() {
 
-  const [dropDown, setDropDown] = useState({
+
+  const [files, setFiles] = useState(null);
+  const [dropDown] = useState({
     para: "Drop your excel sheet here or",
     link: "browse"
   })
+  const [excelData, setExcelData] = useState(null);
+  const [uploadFiles, setUploadFiles] = useState(null)
 
-  function allowDrop(ev) {
-    ev.preventDefault();
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setFiles(e.target.files)
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        try {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: 'array' });
+          const sheetName = workbook.SheetNames[0];
+          const sheet = workbook.Sheets[sheetName];
+          const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+          setExcelData(jsonData);
+        } catch (error) {
+          console.error('Error reading Excel file:', error);
+        }
+      };
+
+      reader.readAsArrayBuffer(file);
+    }
+  };
+  const UploadFilesHere = () => {
+
+    setUploadFiles(() => {
+      return (
+        <div>
+          {excelData && (
+            <table className='table' border="1">
+              <thead>
+                <tr>
+                  {excelData[0].map((header, index) => (
+                    <th key={index}>{header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {excelData.slice(1).map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((cell, cellIndex) => (
+                      <td key={cellIndex}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      )
+    })
   }
-  // function drop(ev) {
-  //   ev.preventDefault();
-  //   var data = ev.dataTransfer.getData("text");
-  //   ev.target.appendChild(document.getElementById(data));
-  // }
 
-  const dragValue = () => {
-    const droparea = document.getElementById("dragDrop")
-    const pervent = (e) => e.preventDefault();
+  const inputRef = useRef();
 
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(dragElement => {
-      droparea.addEventListener(dragElement, pervent)
-    });
-    droparea.addEventListener("drop", handelDropEvent)
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+
+    setFiles(event.dataTransfer.files)
+  };
+
+  const dragFile = (e) => {
+    setFiles(true)
+    var disableInput = document.getElementById("uploadBtn")
+    disableInput.removeAttribute("disabled", "")
   }
-  document.addEventListener("DomContentLoaded", dragValue)
-
-  const handelDropEvent = (e) => {
-    const dt = e.dataTransfer;
-    const files = dt.files;
-    console.log(files)
+  const RemoveFile = () => {
+    setFiles(false)
+    setExcelData(null)
+    setUploadFiles(null)
+    var disableInput = document.getElementById("uploadBtn")
+    disableInput.setAttribute("disabled", "")
   }
+
+
+
 
   return (
     <div className='UserPage'>
@@ -114,13 +176,13 @@ export default function UserPage() {
                 </div>
                 <div className="menuItems">
                   <ul>
-                    <li><a href="#Dashboard"><img src={DashboardIcons} alt="" />Dashboard</a></li>
+                    <li><a href="#Dashboard" data-bs-dismiss="offcanvas" aria-label="Close"><img src={DashboardIcons} alt="" />Dashboard</a></li>
                     <li className='active ' data-bs-dismiss="offcanvas" aria-label="Close" id="Active"><a href="#Upload" ><i class="fa-solid fa-square-poll-vertical"></i>Upload</a></li>
-                    <li><a href="#Invoice"><img src={InvoiceIcons} alt="" />Invoice</a></li>
-                    <li><a href="#Schedule"><img src={ScheduleIcons} alt="" />Schedule</a></li>
-                    <li><a href="#Calendar"><img src={CalendarIcons} alt="" />Calendar</a></li>
-                    <li><a href="#Notification"><img src={NotificationIcons} alt="" />Notification</a></li>
-                    <li><a href="#Settings"><img src={SettingIcons} alt="" />Settings</a></li>
+                    <li><a href="#Invoice" data-bs-dismiss="offcanvas" aria-label="Close"><img src={InvoiceIcons} alt="" />Invoice</a></li>
+                    <li><a href="#Schedule" data-bs-dismiss="offcanvas" aria-label="Close"><img src={ScheduleIcons} alt="" />Schedule</a></li>
+                    <li><a href="#Calendar" data-bs-dismiss="offcanvas" aria-label="Close"><img src={CalendarIcons} alt="" />Calendar</a></li>
+                    <li><a href="#Notification" data-bs-dismiss="offcanvas" aria-label="Close"><img src={NotificationIcons} alt="" />Notification</a></li>
+                    <li><a href="#Settings" data-bs-dismiss="offcanvas" aria-label="Close"><img src={SettingIcons} alt="" />Settings</a></li>
                   </ul>
                 </div>
               </div>
@@ -144,22 +206,60 @@ export default function UserPage() {
         <div className="userPageBody">
           <div className="uploadFileHere">
             <div className='excelSheetHere'>
-              <input type="file" id='uploadBtn' />
-              <label htmlFor="uploadBtn" id='dragDrop'>
-                <div>
-                  <img src={excelIcons} alt="" />
-                </div>
-                <div className='browserHere' onDrop={dragValue} ondragover={allowDrop}>
-                  <p>{`${dropDown.para}`} <span>{`${dropDown.link}`}</span></p>
-                </div>
-              </label>
+              <div
+                className="dropzone"
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+              >
+                <button onClick={() => inputRef.current.click()}>
+                  <label htmlFor="#uploadBtn" id='dragDrop'>
+                    <div>
+                      <img src={excelIcons} alt="" />
+                    </div>
+                    <div className='browserHere'  >
+                      {
+                        files ?
+                          (
+                            <div className='UploadedFileName'>
+                              <div> <span>
+                                {Array.from(files).map((file, idx) => <p key={idx}>{file.name}</p>)}
+                              </span>
+                              </div>
+
+                              <div className='fileRemove'>
+                                <button className='btn' onClick={RemoveFile}>remove </button>
+                              </div>
+
+                            </div>
+
+                          ) : (
+                            <p onClick={dragFile}>{`${dropDown.para}`} <span>{`${dropDown.link}`}</span></p>
+                          )
+                      }
+                    </div>
+                  </label>
+                  <input
+                    type="file"
+                    id='uploadBtn'
+                    onChange={handleFileChange}
+                    hidden
+                    accept=".xlsx, .xls"
+                    ref={inputRef}
+                  />
+                </button>
+              </div>
             </div>
-            <div className='uploadBtnHere'>
-              <label htmlFor="">
-                <i class="fa-solid fa-arrow-up-from-bracket"></i> <span>upload</span>
+            <div className='uploadBtnHere' >
+              <label htmlFor="" >
+                <button type='button' onClick={UploadFilesHere}>
+                  <i class="fa-solid fa-arrow-up-from-bracket"></i> <span>upload</span>
+                </button>
               </label>
             </div>
           </div>
+        </div>
+        <div>
+          {uploadFiles}
         </div>
       </div>
     </div>

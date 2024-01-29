@@ -3,10 +3,9 @@ import "./LoginPage.scss"
 import mainLogoLoginPage from "./image/MainLogo.png"
 import GoogleIcon from "./image/GoogleIcons.png"
 import { Navigate } from 'react-router-dom'
-// import UserPage from './UserPage';
 
 export default function LoginPage() {
-    const [userName, setUserName] = useState("");
+    const [userName, setUserName] = useState(null);
     const [password, setPassword] = useState("");
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [Nav, setNav] = useState("")
@@ -15,14 +14,14 @@ export default function LoginPage() {
 
     const HandelLogin = (e) => {
         e.preventDefault();
-        if (userName.toLowerCase() === "suresh@gmail.com" && password === "suresh") {
+        if (userName.toLowerCase() !== null && password !== null) {
             e.preventDefault();
             setLoggedIn(true);
             setInvalidMsg("")
             setErrorMassage(errorMassage)
             setNav("/UserPage")
         }
-        else if (userName === "" && password === "") {
+        else if (userName === null && password === null) {
             setInvalidMsg("Enter the Username & Password")
 
         }

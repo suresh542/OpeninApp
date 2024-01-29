@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@600&family=Nunito:wght@600&display=swap');
 
 
+body{
+    height: 100vh;
+    background-color: #f2f2f2;
+}
 .UserPage {
     display: flex;
 }
@@ -103,7 +107,7 @@
 .UserPageMain {
     padding: 50px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #f2f2f2;
 
     .userPageHead {
@@ -142,7 +146,6 @@
     }
 
     .userPageBody {
-        // position: relative;
         margin-top: 100px;
         margin-left: 300px;
         margin-right: 300px;
@@ -151,12 +154,45 @@
 
         .uploadFileHere {
             .excelSheetHere {
-                padding: 80px;
+                padding: 50px 10px 50px 10px;
                 border: 2px solid #EBEBEB;
                 border-style: dashed;
                 border-radius: 10px;
                 display: flex;
                 justify-content: center;
+
+                .dropzone {
+                    button {
+                        background: none;
+                        border: none;
+
+                        label {
+                            position: relative;
+
+                            .browserHere {
+                                position: relative;
+
+                                .UploadedFileName {
+                                    display: block;
+                                    position: relative;
+                                    text-align: justify;
+
+                                    .fileRemove {
+                                        button {
+                                            color: red;
+                                            text-transform: capitalize;
+                                            display: flex;
+                                            align-items: center;
+                                            z-index: 1;
+                                        }
+
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
 
                 div {
                     display: flex;
@@ -182,7 +218,7 @@
                 }
 
                 input {
-                    display: none;
+                    display: flex;
                 }
             }
         }
@@ -196,18 +232,25 @@
             }
 
             label {
-                margin-top: 20px;
                 width: 100%;
                 height: 60px;
+                margin-top: 20px;
+                background-color: #605BFF;
+                align-items: center;
+                border-radius: 10px;
                 display: flex;
                 justify-content: center;
-                color: #ffffff;
                 align-items: center;
-                background-color: #605BFF;
-                border-radius: 10px;
 
-                i {
-                    margin-right: 10px;
+                button {
+                    background: none;
+                    border: none;
+                    color: #ffffff;
+
+
+                    i {
+                        margin-right: 10px;
+                    }
                 }
             }
         }
@@ -216,6 +259,12 @@
 
 .MenuListBtn {
     display: none;
+}
+
+
+table{
+    margin-top: 50px;
+    padding: 50px;
 }
 
 @media screen and (max-width: 992px) {
@@ -231,7 +280,6 @@
             display: flex;
             align-items: center;
 
-            // padding: 10px;
             .menuHead {
                 width: 80%;
                 display: flex;
@@ -352,6 +400,7 @@
                     }
                 }
             }
+
             .RightSideHead {
                 display: flex;
                 align-items: center;
@@ -409,6 +458,7 @@
         .userPageHead {
             margin-top: 20px;
             padding: 20px;
+
             .RightSideHead {
                 display: none;
 
@@ -419,9 +469,8 @@
 
             margin-top: 10px;
             margin-left: 20px;
-            margin-right:20px;
+            margin-right: 20px;
             padding: 10px;
-            // background-color: #ffffff;
 
             .uploadFileHere {
                 .excelSheetHere {
