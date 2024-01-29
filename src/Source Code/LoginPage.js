@@ -13,6 +13,7 @@ export default function LoginPage() {
     const [errorMassage, setErrorMassage] = useState();
 
     const HandelLogin = (e) => {
+
         e.preventDefault();
         if (userName.toLowerCase() !== null && password !== null) {
             e.preventDefault();
@@ -34,7 +35,7 @@ export default function LoginPage() {
 
     return (
         <div>
-            {isLoggedIn ? (<Navigate to={Nav}/>) :
+            {isLoggedIn ? (<Navigate to={Nav} />) :
                 (
                     <div className='MainLoginPage'>
                         <div className='loginPageBgImage'>
